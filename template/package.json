@@ -4,6 +4,18 @@
   "description": "{{ description }}",
   "author": "{{ author }}",
   "private": true,
+  "watch": {
+    "build": {
+      "patterns": [
+        "src",
+        "src/components"
+      ],
+      "extensions": "js,vue",
+      "quiet": "false",
+      "delay": 2500,
+      "legacyWatch": true
+    }
+  },
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
@@ -22,9 +34,12 @@
     {{#lint}}
     "lint": "eslint --ext .js,.vue src{{#unit}} test/unit{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}",
     {{/lint}}
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "watch": "npm-watch"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "vue-axios": "^2.1.1",
     "vue": "^2.5.2"{{#router}},
     "vue-router": "^3.0.1"{{/router}}
   },
@@ -100,6 +115,7 @@
     "html-webpack-plugin": "^2.30.1",
     "webpack-bundle-analyzer": "^2.9.0",
     "node-notifier": "^5.1.2",
+    "npm-watch": "^0.3.0",
     "postcss-import": "^11.0.0",
     "postcss-loader": "^2.0.8",
     "postcss-url": "^7.2.1",
